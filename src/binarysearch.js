@@ -20,4 +20,3 @@ export default function binarySearch(key, a) {
     return -1;
 }
 
-binarySearch(2, [1, 3, 2]);
