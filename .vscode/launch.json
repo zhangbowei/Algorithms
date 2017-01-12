@@ -10,7 +10,6 @@
             "args": [],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
-            "runtimeExecutable": null,
             "runtimeArgs": [
                 "--nolazy"
             ],
