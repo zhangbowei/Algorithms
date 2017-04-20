@@ -1,4 +1,4 @@
-export default function findRepeatNum(originArr) {
+export default function findRepeatArr(originArr) {
   const rawArr = originArr.slice().sort((a, b) => a !== b); //不能用 a-b, 字符串还是会被转类型
   const reverseArr = rawArr.slice().reverse();
 
