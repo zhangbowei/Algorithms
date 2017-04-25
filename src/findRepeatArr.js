@@ -1,4 +1,5 @@
 export default function findRepeatArr(originArr) {
+  //a!==b 的缺陷在于 NaN
   const rawArr = originArr.slice().sort((a, b) => a !== b); //不能用 a-b, 字符串还是会被转类型
   const reverseArr = rawArr.slice().reverse();
 
