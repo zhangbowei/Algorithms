@@ -15,10 +15,10 @@ export default function curryFn(fn) {
 }
 
 function curryFn(fn) {
-    const args = [];
+    let args = [];
     const choiceFn = function () {
         Array.prototype.slice.call(arguments);
-        args.concat(arguments);
+        args = args.concat(arguments);
         if (args.length > fn.length) {
             return fn.apply(null, args);
         } else {
