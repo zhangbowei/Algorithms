@@ -1,18 +1,15 @@
-function Fibonacci(number) {
-    var num = number;
-    var cacheArr = [0, 1, 1];
-    var getMethod = function(n) {
-        if (cacheArr[n] !== void 0) {
-            return cacheArr[n];
+function fibonacci(number) {
+    const cacheArr = [0, 1, 1];
+    const getData = function(index) {
+        if (cacheArr[index] !== void 0) {
+            return cacheArr[index];
         } else {
-            var res = getMethod(n-1) + getMethod(n-2);
-            cacheArr[n] = res;
-            return res;
+            cacheArr[index] = getData(index-2) + getData(index-1);
+            return cacheArr[index];
         }
     }
 
-    return getMethod(num);
+    return getData(number);
 }
 
-console.log(Fibonacci(39));
-
+console.log(fibonacci(39));

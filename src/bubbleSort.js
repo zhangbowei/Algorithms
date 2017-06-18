@@ -1,4 +1,4 @@
-function bubble_sort(input){
+function bubbleSort(input){
   var i, j, temp, flag;
   for(i = 0; i < input.length - 1; i++){
     flag = true;
@@ -10,9 +10,7 @@ function bubble_sort(input){
         flag = false;
       }
     }
-    if(flag)
-      // 提前结束
-      break;
+    if(flag) break;
   }
   return input;
 }

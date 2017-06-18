@@ -1,21 +1,16 @@
-function getNoRepeatArr(dataArr) {
-    function filterRepeat(originArr) {
-      const [rawArr, len] = [originArr.slice(), originArr.length];
-      const hash = {};
+function productSoleArr(dataArr) {
+    const [rawArr, len] = [dataArr.slice(), dataArr.length];
+    const hash = {};
 
-      return rawArr.reduce(function(prev, item) {
-        let key = [typeof(item), item].join('');
-
-        if (hash[key] !== 1) {
-          prev.push(item);
-          hash[key] = 1;
+    return rawArr.reduce(function(prev, item) {
+        const key = [typeof(item), item].join('');
+        if (hash[key] === void 0) {
+            hash[key] = true;
+            return prev.concat([item]);
+        } else {
+            return prev;
         }
-
-        return prev;
-      }, []);
-    }
-
-    return filterRepeat(dataArr);
+    }, []);
 }
 
-console.log(getNoRepeatArr([12933, 111111, 59220, 69433, 59220, 111111]));
+console.log(productSoleArr([12933, 111111, 59220, 69433, 59220, 111111]));

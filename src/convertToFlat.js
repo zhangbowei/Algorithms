@@ -38,11 +38,11 @@ function convertToFlat(dataArr, pathArr) {
     const rawArr = dataArr.slice();
     const confArr = pathArr.slice();
 
-    return rawArr.reduce(function(stock, good, tag) {
-        return stock.concat([confArr.reduce(function(box, element, order) {
-            return box.concat([{[element]: getConfData(good, element)}]);
+    return rawArr.reduce(function (stock, good, tag) {
+        return stock.concat([confArr.reduce(function (box, element, order) {
+            return box.concat([{ [element]: getConfData(good, element) }]);
         }, [])]);
     }, []);
 
 }
-console.log(convertToFlat(testArr, ["k1.k3ad","ke.name"]));
+console.log(convertToFlat(testArr, ["k1.k3ad", "ke.name"]));

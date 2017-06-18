@@ -18,7 +18,7 @@ export default function productExceptSelf(arr) {
         }
 
         return 0;
-    })
+    });
 
     return res;
 }

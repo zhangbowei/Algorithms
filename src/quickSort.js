@@ -7,6 +7,7 @@ function quickSort(input){
     sort(start, mid - 1);
     sort(mid + 1, end);
   }
+
   function partition(start, end){
     var left = start, right = end, key = input[start], temp;
     while(left < right){

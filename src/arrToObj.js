@@ -25,23 +25,32 @@ let arr = [{
     'parentId': 'id-4'
 }];
 
+function convertFlatToDepth(dataArr) {
+    function filterData(dataObj, exkeyArr) {
+        return Object.keys(dataObj).reduce(function(prev, item) {
+            exkeyArr.includes(item) ? null : prev[item] = dataObj[item];
+            return prev;
+        }, {});
+    }
+    function connectData(dataObj) {
+        const rawData = dataObj;
 
+        Object.keys(rawData).forEach(function(good) {
+            rawData[good].forEach(function(element) {
+                element.children = rawData[element.id];
+            });
+        });
 
-let result = arr.reduce(function (prev, item) {
-    const insert = {
-        name: item.name,
-        value: item.value,
-        id: item.id
-    };
+        return rawData;
+    }
 
-    prev[item.parentId] ? prev[item.parentId].push(insert) : prev[item.parentId] = [insert];
-    return prev;
-}, {});
+    const depthData = dataArr.reduce(function(stock, good) {
+        const data = filterData(good, ['parentId']);
+        stock[good.parentId] = stock[good.parentId] ? stock[good.parentId].concat([data]) : [data];
+        return stock;
+    }, {});
 
-for (var key in result) {
-    result[key].forEach(function (item, index) {
-        result[item.id] ? item.children = result[item.id] : ''
-    });
+    return connectData(depthData)[null];
 }
 
-console.log(JSON.stringify(result[null]));
+console.log(JSON.stringify(convertFlatToDepth(arr)));

@@ -1,24 +1,25 @@
-export function singalLamp(singalArr) {
-    function tic(singal, time) {
-        return () => new Promise((res) => setTimeout(() => {
-            console.log(singal);
+export function signalLamp(signArr) {
+    function getTic(sign, delay) {
+        return () => new Promise( (res, rej) => setTimeout(function() {
             res();
-        }, time));
+            console.log(sign);
+        }, delay));
     }
 
-    const rawArr = singalArr.slice();
-    const lampArr = rawArr.reduce(function(prev, item) {
-        return prev.concat([tic(item, 1000)]);
+    const rawArr = signArr.slice();
+    const ticArr = rawArr.reduce(function(prev, item) {
+        return prev.concat([getTic(item, 1000)]);
     }, []);
-    const step = function(iterator) {
-        if (iterator === lampArr.length) {
-            return step(0);
+    const runStep = function(iterator) {
+        if (iterator === ticArr.length) {
+            return runStep(0);
         } else {
-            return () => lampArr[iterator]().then(step(++iterator));
+            return () => ticArr[iterator]().then(runStep(++iterator));
         }
     }
 
-    step(0)();
+    runStep(0)();
 }
 
-singalLamp(['red', 'green', 'yellow']);
+
+signalLamp(['red', 'green', 'yellow']);
