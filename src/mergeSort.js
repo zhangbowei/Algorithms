@@ -1,3 +1,4 @@
+
 function mergeSort(arr) {  //采用自上而下的递归方法
     var len = arr.length;
     if(len < 2) {
