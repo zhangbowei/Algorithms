@@ -1,4 +1,4 @@
-//test input
+//Case 购物车
 var input = `1000 5
 800 2 0
 400 5 1
@@ -73,4 +73,84 @@ function productPack(db, dt) {
     });
 
     return db;
+}
+
+//Case: 双核CPU任务调度 (优化，只用2*n数组)
+var readline = require("readline");
+const r1 = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+//var input = ''; input += line不行，\n输不进来
+var input = [], count = 0, n = 2;
+
+r1.on('line', function (line) {
+    ++count;
+    input.push(line);
+    if (count === n) {
+        doIt(input);
+        initAll();
+    }
+});
+
+function initAll() {
+    input = [];
+    count = 0;
+}
+
+function doIt(input) {
+    function formatData(rawData) {
+        return rawData.map(function (good) {
+            return good.split(' ').map(function (item, index) {
+                // 视情况而定，'32'.split(' ') = ['32']
+                return +item;
+            });
+        });
+    }
+
+    var data = formatData(input);
+    console.log(splitData(data[1]));
+    // console.log('your function');
+    function splitData(dataArr) {
+        function deliverTask(taskA, taskB) {
+            return ~~(Math.abs(taskA - taskB) / 2);
+        }
+
+        // function createSingleArr(count) {
+        //     return new Array(count + 1).join().split('').map(function () {
+        //         return 0;
+        //     });
+        // }
+        function backpack(w, v, room) {
+            var rel1 = [];
+            for (var i = 0; i <= room; i++) { //这里i表示weight
+
+                    rel1.push(0);
+
+            }
+            for (var i = 1; i < w.length+1; i++) {
+                for (var j = room; j > 0; j--) {
+                    if (j - w[i-1] >= 0) {
+                        rel1[j] = Math.max(rel1[j - w[i-1]] + v[i-1], rel1[j]);
+                    }
+                }
+            }
+            return rel1;
+        }
+        var tidyData = dataArr.slice().map(function (item) {
+            return item / 1024;
+        });
+        var sum = tidyData.reduce(function (prev, item) {
+            return prev + item;
+        }, 0);
+
+
+        var bp = backpack(tidyData, tidyData, Math.floor(sum / 2));
+        var taskA = bp.slice(-1)[0];
+        var taskB = sum - taskA;
+
+        // return (taskB - deliverTask(taskA, taskB)) * 1024;
+        return (sum - taskA) * 1024;
+    }
 }

@@ -24,7 +24,7 @@ Model.prototype.watch = function (callback) {
 Model.prototype.bind = function (nodeDom) {
     const el = nodeDom;
 
-    this.listener.watch((value) => {
+    this.watch((value) => {
         el.innerHTML = value; //整个实现尽量简单，所以这里默认设置DOM元素的innerHTML。
     });
 }

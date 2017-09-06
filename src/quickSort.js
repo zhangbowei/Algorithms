@@ -27,3 +27,5 @@ function quickSort(input){
   sort(0, input.length - 1);
   return input;
 }
+
+console.log(quickSort([1, 4, 2, 5, 6, 7, 8, 9, 0]));

@@ -43,3 +43,41 @@ function Promise(callbackFn) {
 
     callbackFn(resolve, reject);
 }
+
+Promise.all = function(promises){
+    if (!Array.isArray(promises)) {
+        throw new TypeError('You must pass an array to all.');
+      }
+　　　　// 返回一个promise 实例
+      return new Promise(function(resolve,reject){
+          var i = 0,
+              result = [],
+              len = promises.length,
+            　 count = len;
+
+　　　　　　// 每一个 promise 执行成功后，就会调用一次 resolve 函数
+          function resolver(index) {
+          　　return function(value) {
+            　　　resolveAll(index, value);
+          　　};
+        　}
+
+        function rejecter(reason){
+            reject(reason);
+        }
+
+        function resolveAll(index,value){
+　　　　　　　// 存储每一个promise的参数
+            result[index] = value;
+　　　　　　　// 等于0 表明所有的promise 都已经运行完成，执行resolve函数
+            if( --count == 0){
+                resolve(result)
+            }
+        }
+　　　　　　// 依次循环执行每个promise
+          for (; i < len; i++) {
+　　　　　　　　 // 若有一个失败，就执行rejecter函数
+              promises[i].then(resolver(i),rejecter);
+          }
+      });
+}
