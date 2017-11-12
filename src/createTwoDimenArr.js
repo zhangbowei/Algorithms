@@ -10,10 +10,10 @@ function createSoleDimenArr(count, initData) {
     }
     return res;
 }
-function createTwoDimenArr(column, row) {
-    return createSoleDimenArr(column).map(function (good, tag) {
-        return createSoleDimenArr(row).map(function (element, order) {
-            return tag * row + order;
+function createTwoDimenArr(row, column) {
+    return createSoleDimenArr(row).map(function (good, tag) {
+        return createSoleDimenArr(column).map(function (element, order) {
+            return 0;
         });
     });
 }

@@ -4,15 +4,18 @@
 // 2.154434690031884
 //考虑边界条件 就如 考虑 网站安全问题
 var inputArr = [
-    `5 7
-1 2 3 4 5
-Q 1 5
-U 3 6
-Q 3 4
-Q 4 5
-U 4 5
-U 2 9
-Q 1 5`,
+    // `abcd12345ed125ss123058789`,
+    // `abcd`,
+    // `12345788  88888`,
+    // `a1234ba1235`,
+    // `adfasfsadfas`,
+    // `  `,
+    `12345a12345a12345a`
+    // ``
+    // `a1b2c3`,
+    // `a0000009fdsafdc9932993f333333333`
+    // `''`,
+    // ``
 ];
 
 inputArr.forEach(function (input, index) {
@@ -32,22 +35,77 @@ function doIt(input) {
             // 视情况而定，'32'.split(' ') = ['32']
             // return (index === 0) ? item : +item;
             // });
-
-            /* [^\s]+用+号，用*不匹配会填充''.*/
-            var res = good.match(/[^\s]+/g);
-            return res.map(function (item, index) {
-                // 视情况而定，'32'.split(' ') = ['32']
-                return +item;
-            });
         });
         // return rawData;
     }
 
     var data = formatData(input);
     //小心，有时候90%，因为空串不输出
-    if (data[0] !== '') {
-        // console.log(findMaxChildStr(data[0]));
-        // print('your function');
+    console.log(findMaxSeq(data[0]));
+    function findMaxSeq(dataStr) {
+        function getNumSeq(str) {
+            // str = str.replace(/\s/g, '');
+            var res = str.match(/\d{1,}/g);
+            return res;
+        }
+
+        function isLawful(str) {
+            var numArr = str.split('').map(function (item) {
+                return +item;
+            });
+
+            var res = true;
+            var standardNum = numArr[0];
+            for (var i = 1; i < numArr.length; ++i) {
+                if (numArr[i] !== ++standardNum) {
+                    res = false;
+                    break;
+                }
+            }
+
+            return res;
+        }
+        function getMaxItem(dataArr) {
+            var max = 0, res;
+
+            for (var i = 0; i < dataArr.length; ++i) {
+                if (max <= dataArr[i]) {
+                    max = dataArr[i].length;
+                    res = dataArr[i];
+                }
+            }
+
+            return res;
+        }
+        // function hasTwoEqual(lawArr, maxItem) {
+        //     var count = 0;
+        //     for(var i = 0; i < lawArr.length; ++i) {
+        //         if (lawArr[i].length === maxItem.length) {
+        //             ++count;
+        //         }
+        //         if (count === 2) {
+        //             return true;
+        //         }
+        //     }
+
+        //     return false;
+        // }
+        function getOutput(data) {
+            return [data, data.length].join('\n');
+        }
+
+        var numStrArr = getNumSeq(dataStr);
+        // var lawArr = numStrArr.filter(function(item) {
+        //     return isLawful(item);
+        // });
+        if (numStrArr === null) {
+            return 0;
+        }
+        var lawArr = numStrArr.slice();
+        var maxItem = getMaxItem(lawArr);
+        var res = getOutput(maxItem);
+
+        return res;
     }
 }
 

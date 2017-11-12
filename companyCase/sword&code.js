@@ -84,7 +84,7 @@ console.log(Find(7, [[1, 2, 8, 9], [2, 4, 9, 12], [4, 7, 10, 13], [6, 8, 11, 15]
 /**
  * 题目：链表
  */
- function ListNode(value, next) {
+function ListNode(value, next) {
     if (this instanceof ListNode) {
         return new ListNode(prev, next);
     } else {
@@ -93,8 +93,8 @@ console.log(Find(7, [[1, 2, 8, 9], [2, 4, 9, 12], [4, 7, 10, 13], [6, 8, 11, 15]
     }
 }
 
-function printListFromTailToHead(head){
-    while(head !== null) {
+function printListFromTailToHead(head) {
+    while (head !== null) {
         console.log(head.val);
         head = head.next;
     }
@@ -137,15 +137,15 @@ function reConstructBinaryTree(pre, vin) {
 
 }
 
-console.log(reConstructBinaryTree([1,2,4,3,5,6],[4,2,1,5,3,6]));
+console.log(reConstructBinaryTree([1, 2, 4, 3, 5, 6], [4, 2, 1, 5, 3, 6]));
 
 /*
 * 题目：正则匹配
 *
 */
-function match(s, pattern){
+function match(s, pattern) {
     // write code here
-    var pattern = '^'+pattern+'$';
+    var pattern = '^' + pattern + '$';
     var rex = new RegExp(pattern);
 
     return rex.test(s);
@@ -153,11 +153,11 @@ function match(s, pattern){
 
 
 //题目：链表环的入口节点
-function EntryNodeOfLoop(pHead){
+function EntryNodeOfLoop(pHead) {
     // write code here
     var start = pHead;
 
-    while(start.next !== null) {
+    while (start.next !== null) {
         start.visited = true;
         start = start.next;
         if (start.visited === true) {
@@ -246,8 +246,8 @@ function doIt(input) {
             }
         }
 
-        for(var i = 0; i < rows; ++i) {
-            for(var j = 0; j < cols; ++j) {
+        for (var i = 0; i < rows; ++i) {
+            for (var j = 0; j < cols; ++j) {
                 if (i === 0 && j === 0) {
                     continue;
                 }
@@ -364,16 +364,16 @@ function Find(target, array) {
     var rows = array.length, cols = array[0].length;
     var i = rows - 1, j = 0, key = target;
 
-    while(true) {
+    while (true) {
         if (i < 0 || j >= cols) {
             return false;
         }
         if (array[i][j] > key) {
-            -- i;
+            --i;
             continue;
         }
         if (array[i][j] < key) {
-            ++ j;
+            ++j;
             continue;
         }
         if (array[i][j] === key) {
@@ -426,7 +426,7 @@ var reHead = ReverseList(head);
 var res = iteratorList(reHead);
 console.log(res);
 //题目：合并两个链表
-function Merge(pHead1, pHead2){
+function Merge(pHead1, pHead2) {
     // write code here
     if (pHead1 === null || pHead2 === null) {
         if (pHead1 === null) {
@@ -498,7 +498,7 @@ function printMatrix(matrix) {
     return res;
 }
 
-printMatrix([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]);
+printMatrix([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]);
 printMatrix([[1, 2, 3, 4, 5]]);
 printMatrix([[1], [2], [3], [4], [5]]);
 printMatrix([[1]]);
@@ -523,8 +523,7 @@ function isSubtree(headA, headB) {
     }
 
 }
-function HasSubtree(pRoot1, pRoot2)
-{
+function HasSubtree(pRoot1, pRoot2) {
     // write code here
     if (pRoot1 === null || pRoot2 === null) return null;
 
@@ -532,15 +531,15 @@ function HasSubtree(pRoot1, pRoot2)
 
 }
 module.exports = {
-    HasSubtree : HasSubtree
+    HasSubtree: HasSubtree
 };
 
 //题目：和为S连续正整数列
-function FindContinuousSequence(sum){
+function FindContinuousSequence(sum) {
     function getOutput(dataArr) {
-        var res = dataArr.reduce(function(prev, item) {
+        var res = dataArr.reduce(function (prev, item) {
             var seq = [];
-            for(var i = item[0]; i < item[0] + item[1]; ++i) {
+            for (var i = item[0]; i < item[0] + item[1]; ++i) {
                 seq.push(i);
             }
             return prev.concat([seq]);
@@ -551,13 +550,13 @@ function FindContinuousSequence(sum){
     // write code here
     var start = ~~(sum / 2);
     var res = [];
-    for(var i = 1; i <= start; ++i) {
+    for (var i = 1; i <= start; ++i) {
         var val = 0;
-        for(var j = 2; ; ++j) {
+        for (var j = 2; ; ++j) {
             if (i === 18 && j === 5) {
                 console.log('test');
             }
-            val = (2*i + (j - 1))*j/2;
+            val = (2 * i + (j - 1)) * j / 2;
             if (val > sum) {
                 break;
             }
@@ -571,11 +570,11 @@ function FindContinuousSequence(sum){
 }
 
 //题目：和为S的两个数字
-function FindNumbersWithSum(array, sum){
+function FindNumbersWithSum(array, sum) {
     // write code here
     function getIndex(arr, num) {
         var cpArr = arr.slice();
-        var res = cpArr.reduce(function(prev, item, index) {
+        var res = cpArr.reduce(function (prev, item, index) {
             if (item > num) {
                 prev = index;
                 cpArr.length = 0;
@@ -587,13 +586,13 @@ function FindNumbersWithSum(array, sum){
     }
 
     var arr = array.slice();
-    var mid = getIndex(arr, ~~(sum/2));
+    var mid = getIndex(arr, ~~(sum / 2));
 
 
     if (mid === -1) return [];
     var res = [];
-    for(var i = 0; i < mid; ++i) {
-        if(arr.indexOf(sum - arr[i]) !== -1) {
+    for (var i = 0; i < mid; ++i) {
+        if (arr.indexOf(sum - arr[i]) !== -1) {
             res = [arr[i], sum - arr[i]];
             break;
         }
@@ -630,7 +629,7 @@ function IsContinuous(numbers) {
     function isLawful(dataArr) {
         var len = dataArr.length;
 
-        for(var i = 0; i < len; ++i) {
+        for (var i = 0; i < len; ++i) {
             if (dataArr.lastIndexOf(dataArr[i]) !== i) {
                 return false;
             }
@@ -660,37 +659,37 @@ function IsContinuous(numbers) {
 
     return flag;
 }
-IsContinuous([1,3,2,5,4])
+IsContinuous([1, 3, 2, 5, 4])
 
 //题目：求两个整数之和
-function Add(num1, num2){
+function Add(num1, num2) {
     // write code here
     var a, b;
-    a = num1^num2;
-    b = (num2&num1) << 1;
-    while(b) {
+    a = num1 ^ num2;
+    b = (num2 & num1) << 1;
+    while (b) {
         num1 = a;
         num2 = b;
-        a = num1^num2;
-        b = (num1&num2) << 1;
+        a = num1 ^ num2;
+        b = (num1 & num2) << 1;
     }
 
     return a;
 }
 
 //题目：构建成绩数组
-function multiply(array){
+function multiply(array) {
     // write code here
     var B = [], A = array.slice();
 
     B[0] = 1;
 
-    for(var i = 1; i < A.length; ++i) {
-        B[i] = B[i-1]*A[i-1];
+    for (var i = 1; i < A.length; ++i) {
+        B[i] = B[i - 1] * A[i - 1];
     }
     var temp = 1;
-    for(var i = A.length - 2; i >= 0; --i) {
-        temp *= A[i+1];
+    for (var i = A.length - 2; i >= 0; --i) {
+        temp *= A[i + 1];
         B[i] = B[i] * temp;
     }
 
@@ -699,7 +698,7 @@ function multiply(array){
 }
 
 //题目：表示数值的字符串
-function isNumeric(s){
+function isNumeric(s) {
     // write code here
     var re = /^[+-]?\d*(\.\d+)?([eE][-+]?\d+)?$/;
     var res = re.test(s);
@@ -708,30 +707,29 @@ function isNumeric(s){
 }
 
 //题目：删除链表中的重复节点
-function deleteDuplication(pHead){
+function deleteDuplication(pHead) {
     // write code here
-    if(pHead === null || pHead.next === null) {
+    if (pHead === null || pHead.next === null) {
         return pHead;
     }
 
     var first = pHead.next, last = pHead;
     var res;
 
-    if(first.val === last.val) {
-        while(first !== null && first.val === last.val ) {
+    if (first.val === last.val) {
+        while (first !== null && first.val === last.val) {
             first = first.next;
         }
         return deleteDuplication(first);
     } else {
-       pHead.next = deleteDuplication(first);
+        pHead.next = deleteDuplication(first);
     }
 
     return pHead;
 }
 
 //题目: 镜像 对称二叉树
-function isSymmetrical(pRoot)
-{
+function isSymmetrical(pRoot) {
     function compare(left, right) {
         if (left === right) {
             return true;
@@ -779,9 +777,275 @@ function Print(pRoot) {
             });
         });
     }
-    if(pRoot === null) return [];
+    if (pRoot === null) return [];
     var nodeArr = [[pRoot]].concat(getIncr([pRoot], false));
     var res = getOutput(nodeArr);
 
     return res;
+}
+
+//题目：两个链表的第一个公共节点
+function FindFirstCommonNode(pHead1, pHead2) {
+    // write code here
+    var pointA = pHead1, pointB = pHead2;
+
+    while (pointA !== pointB) {
+        pointA === null ? pointA = pHead2 : pointA = pointA.next;
+        pointB === null ? pointB = pHead1 : pointB = pointB.next;
+    }
+
+    return pointA;
+}
+//题目：逆序对
+function inversePairs(data) {
+    // write code here
+    function mergeSort(dataArr, count) {
+        function partition(start, end) {
+            if (start === end) {
+                return [dataArr[start]];
+            }
+
+            var mid = ~~((start + end) / 2);
+            var arrA = partition(start, mid);
+            var arrB = partition(mid + 1, end);
+
+            return sort(arrA, arrB);
+        }
+
+        function sort(arrA, arrB) {
+            var res = [];
+
+            while (arrA.length && arrB.length) {
+                while (arrA[0] <= arrB[0] && arrA.length) {
+                    res.push(arrA.shift());
+                }
+                while (arrB[0] <= arrA[0] && arrB.length) {
+                    count += arrA.length;
+                    res.push(arrB.shift());
+                }
+            }
+
+            res = res.concat(arrA).concat(arrB);
+
+            return res;
+        }
+
+        var resArr = partition(0, dataArr.length - 1);
+
+        return count;
+    }
+
+    var res = mergeSort(data, 0);
+
+    return res;
+}
+
+inversePairs([1, 2, 3, 4, 5, 6, 7, 0]);
+//丑数
+function GetUglyNumber_Solution(index) {
+    // write code here
+    var res = [1], pointA = 0, pointB = 0, pointC = 0;
+
+    for(var i = 0; i < res.length; ++i) {
+        var data = Math.min(res[pointA] * 2, res[pointB] * 3, res[pointC] * 5);
+        if (data === res[pointA] * 2) ++pointA;
+        if (data === res[pointB] * 3) ++pointB;
+        if (data === res[pointC] * 5) ++pointC;
+        res.push(data);
+        if (res.length > index) break;
+    }
+
+    return res[index-1];
+
+}
+
+//把数组排成最小的数   (排列问题)
+function PrintMinNumber(numbers){
+    // write code here
+    function getGroup(dataArr) {
+        if (dataArr.length === 1) {
+            return [dataArr];
+        }
+        var start = dataArr[0];
+        var groupArr = getGroup(dataArr.slice(1));
+
+        return groupArr.reduce(function(stock, good) {
+            var res = [];
+
+            for(var i = 0; i <= good.length; ++i) {
+                var cpGood = good.slice();
+
+                cpGood.splice(i, 0, start);
+                res.push(cpGood);
+            }
+
+            return stock.concat(res);
+        }, []);
+    }
+
+    if (numbers.length === 0) return "";
+    var dataArr = numbers.slice();
+    var groupArr = getGroup(dataArr);
+    var minVal = groupArr.reduce(function(prev, item) {
+        var newVal = +item.join('');
+        return prev > newVal ? newVal : prev;
+    }, Infinity);
+
+    return minVal;
+}
+
+//最小的K个数
+function GetLeastNumbers_Solution(input, k) {
+    // write code here
+    function quickSort(dataArr) {
+        function partition(start, end) {
+            if (start > end) {
+                return;
+            }
+
+            var mid = sort(start, end);
+
+            partition(start, mid - 1);
+            if (mid - start < k) {
+                partition(mid + 1, end);
+            }
+        }
+        function sort(start, end) {
+            var temp = dataArr[start];
+
+            while (start < end) {
+                while (start < end && temp <= dataArr[end]) {
+                    --end;
+                }
+                dataArr[start] = dataArr[end];
+                while (start < end && temp >= dataArr[start]) {
+                    ++start;
+                }
+                dataArr[end] = dataArr[start];
+            }
+
+            dataArr[start] = temp;
+
+            return start;
+        }
+
+        partition(0, dataArr.length-1);
+    }
+    if (k > input.length) return [];
+    quickSort(input);
+
+    var res = input.slice(0, k);
+    return res;
+}
+
+function GetLeastNumbers_Solution(input, k) {
+    // write code here
+    function bubbleSort(dataArr, key) {
+        var len = dataArr.length;
+        var rawData = dataArr.slice();
+
+        for (var i = 0; i < key; ++i) {
+            var flag = true;
+            for (var j = 0; j < len - i - 1; ++j) {
+                if (rawData[j + 1] > rawData[j]) {
+                    var temp = rawData[j];
+                    rawData[j] = rawData[j + 1];
+                    rawData[j + 1] = temp;
+                    flag = false;
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+
+        return rawData;
+    }
+
+    if (k > input.length || k === 0) return [];
+
+    var res = bubbleSort(input, k).slice(-k).reverse();
+
+    return res;
+}
+//压栈出栈
+function IsPopOrder(pushV, popV) {
+    // write code here
+    if(pushV.length === 0 || popV.length === 0){
+        return;
+    }
+
+    var temp = [], index = 0;
+
+    for (var i = 0; i < pushV.length; ++i) {
+        temp.push(pushV[i]);
+
+        while (temp.length !== 0 && temp.slice(-1)[0] === popV[index]) {
+            temp.pop();
+            ++index;
+        }
+    }
+
+    return temp.length === 0;
+}
+//后续遍历合法性
+function VerifySquenceOfBST(sequence){
+    function verify(sequence) {
+        if (sequence.length <= 3) {
+            return true;
+        }
+
+        var root = sequence.splice(-1)[0];
+        var left = [], right = [];
+
+        for(var i = 0; i < sequence.length; ++i) {
+            if (sequence[i] < root)  {
+                left.push(sequence[i]);
+            } else {
+                break;
+            }
+        }
+        right = sequence.slice(i+1);
+
+        for(var i = 0; i < right.length; ++i) {
+            if (root > right[i]) {
+                return false;
+            }
+        }
+
+        return verify(left) && verify(right);
+
+    }
+    // write code here
+    if (sequence === null || sequence.length === 0) {
+        return false;
+    }
+
+    var res = verify(sequence);
+    return res;
+}
+//二叉搜索树专化为 双向链表
+function Convert(pRootOfTree){
+    // write code here
+    var head = null, realHead = null;
+    var convertTreeToList = function(root) {
+        if(root == null) return;
+
+        convertTreeToList(root.left);
+
+        if(head == null) {
+            head = root;
+            realHead = root;
+        } else {
+            head.right = root;
+            root.left = head;
+            head = root;
+        }
+
+        convertTreeToList(root.right);
+    }
+
+    convertTreeToList(pRootOfTree);
+
+    return realHead;
 }

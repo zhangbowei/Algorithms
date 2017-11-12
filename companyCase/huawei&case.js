@@ -822,7 +822,7 @@ function checkPassword(dataStr) {
     return getOutput(res);
 }
 
-//题目：最长回文检测
+//题目：最长回文检测 (此方法有问题cddc情况未考虑， cdadc考虑)
 function doIt(input) {
     function formatData(rawData) {
         return rawData;
@@ -1169,11 +1169,3 @@ function Find(target, array) {
         }
     }
 }
-
-
-
-
-
-
-
-

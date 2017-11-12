@@ -1,79 +1,65 @@
-var inputArr = [
-    `9001
-0
-1
-2`,
-];
-
-inputArr.forEach(function (input, index) {
-    // console.log(index);
-    // console.log('input: ', input);
-    doIt(input.split('\n'));
-});
-
-//submit this
-/* Array.isArray(dataArr)不能用
-*/
-function doIt(input) {
-    function formatData(rawData) {
-        return rawData.map(function (item) {
-            return +item;
+function fill(n, m) {
+    function createSoleDimenArr(count, initData) {
+        var res = [];
+        for (var i = 0; i < count; ++i) {
+            res.push(initData || 0);
+        }
+        return res;
+    }
+    function createTwoDimenArr(row, column) {
+        return createSoleDimenArr(row).map(function (good, tag) {
+            return createSoleDimenArr(column).map(function (element, order) {
+                return 0;
+            });
         });
     }
 
-    var data = formatData(input);
-    //小心，有时候90%，因为空串不输出
-    // console.log(findMaxChildStr(data[0]));
-    console.log(productMaxNum(data));
+    function getOutData(matrix, row, col) {
+        var startC = col, startR = row;
+        var endR = matrix.length - row, endC = matrix[0].length - col;
 
-    function productMaxNum(dataArr) {
-        function getMax(dataArr) {
-            return Math.max.apply(null, dataArr);
+        for (var i = startC; i < endC; ++i) {
+            matrix[startC][i] = ++count;
         }
-        function getMin(dataArr) {
-            return Math.min.apply(null, dataArr);
+        for (var i = startR + 1; i < endR - 1; ++i) {
+            matrix[i][endR - 1] = ++count;
         }
-        function getOutput(data) {
-            return data.join('');
-        }
-
-        var number = dataArr[0], cardArr = dataArr.slice(1);
-        var res = [];
-        var numArr = Math.abs(number).toString().split('').map(function (item) {
-            return +item;
-        });
-        if (number > 0) {
-            for (var i = 0; i < numArr.length; ++i) {
-                if (cardArr.length === 0) {
-                    res.push(numArr[i]);
-                    continue;
-                }
-                var maxCard = getMax(cardArr);
-                if (maxCard > numArr[i]) {
-                    cardArr.splice(cardArr.indexOf(maxCard), 1);
-                    res.push(maxCard);
-                } else {
-                    res.push(numArr[i]);
-                }
+        if (endR - 1 !== 0) {
+            for (var i = endC - 1; i >= startC; --i) {
+                matrix[endR - 1][i] = ++count;
             }
-            res = getOutput(res);
-        } else {
-            for (var i = 0; i < numArr.length; ++i) {
-                if (cardArr.length === 0) {
-                    res.push(numArr[i]);
-                    continue;
-                }
-                var minCard = getMin(cardArr);
-                if (minCard < numArr[i]) {
-                    cardArr.splice(cardArr.indexOf(minCard), 1);
-                    res.push(minCard);
-                } else {
-                    res.push(numArr[i]);
-                }
+        }
+        if (endC - 1 !== 0) {
+            for (var i = endR - 2; i > startR; --i) {
+                matrix[i][startC] = ++count;
             }
-            res = '-' + getOutput(res);
         }
 
         return res;
     }
+
+    function clockwise(matrix, row, col) {
+        if (matrix.length === row) return;
+        if (matrix[0].length === col) return;
+
+        getOutData(matrix, row, col);
+        clockwise(matrix, row+1, col+1);
+
+        return res;
+    }
+
+    function getOutput(matrix) {
+        return matrix.reduce(function(prev, rowArr) {
+            return prev.concat([rowArr.join(' ')]);
+        }, []).join('\n');
+    }
+
+    var count = 0;
+    var matrix = createTwoDimenArr(n, m);
+
+    clockwise(matrix, 0, 0);
+
+    var res = getOutput(matrix);
+
+    return res;
 }

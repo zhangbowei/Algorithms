@@ -298,7 +298,48 @@ str.replace(re,function($0,$1){
            value = $1;  //value保存的是出现最多的这个字符
     }
 
-});
+})import java.util.Scanner;
+
+public class First {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String string = scanner.nextLine();
+        longestNum(string);
+    }
+
+    public static void longestNum(String string) {
+        int result = 0;
+        int count = 0;
+        int end = 0;
+        boolean isNum = false;
+
+        for(int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if (c > '9' || c < '0') {
+                count  = 0;
+                isNum = false;
+                continue;
+            }
+            if (isNum) {
+                count ++;
+            } else  {
+                count = 1;
+                isNum = true;
+            }
+            if (count >= result) {
+                result = count;
+                end = i;
+            }
+        }
+
+        if (result == 0) {
+            System.out.println(0);
+            return ;
+        }
+        System.out.println(string.substring(end - result + 1, end + 1));;
+        System.out.println(result);
+    }
+};
 
 alert('最多的字符:'+value+',重复的次数:'+index);  // s   17
 ```

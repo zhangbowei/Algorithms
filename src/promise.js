@@ -81,3 +81,9 @@ Promise.all = function(promises){
           }
       });
 }
+
+Promise.resolve = function(data) {
+    return new Promise((res) => {
+        res(data);
+    });
+}
