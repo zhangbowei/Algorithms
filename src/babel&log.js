@@ -2,7 +2,6 @@ var babel = require('babel-core');
 var t = require('babel-types');
 
 // const code = `a.b.log(-8);`;
-const code = `log(-8);`;
 
 const visitor = {
 	CallExpression(path) {
