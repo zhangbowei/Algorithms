@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "babel-core": "^6.25.0",
-    "babel-types": "^6.25.0"
+    "babel-types": "^6.25.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
