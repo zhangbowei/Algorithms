@@ -1,3 +1,5 @@
-const needsPush = require('updatesf');
+function wrapper(x, y) {
+    return x + y;
+}
 
-needsPush(); // true or false of process.cwd()
+wrapper(1, 2);
