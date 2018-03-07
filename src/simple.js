@@ -1,14 +1,11 @@
-function f2() {
-	var f = function () { return 1; };
-    function f() { return '2'; }
-    if (true) {
-        function test() {
-            console.log('tset')
-        }
-    }
-    test()
-    return f();
-} // 1
+function C(x) {
+    this.x = x;
+}
+var a = new C(1);
 
-var a = f2();
-console.log(a);
+
+C.prototype.y = 1;
+var b = new C(2);
+console.log(b.x, b.y);
+console.log(a.__proto__);
+console.log(a.x, a.y);
