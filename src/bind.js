@@ -21,6 +21,54 @@ Function.prototype.bind = function (self) {
     return res;
 }
 
+Function.prototype.bind = function(self) {
+    var that = this;
+    var len = this.length;
+    var args = [].slice.apply(arguments);
+    var self = args[0];
+    var items = args.slice(1);
+
+    var res = function() {
+        if(this !== global) {
+            self = this;
+        }
+
+        items = items.concat([].slice.call(arguments));
+
+        if (items.length >= len) {
+            return that.apply(self, items);
+        } else {
+            return arguments.callee;
+        }
+    }
+
+    return res;
+
+}
+
+Function.prototype.bind = function(self) {
+    var that = this;
+    var len = this.length;
+    var args = [].slice.apply(arguments);
+    var self = args[0];
+    var items = args.slice(1);
+
+    var res = function() {
+        if (this !== global) {
+            self = this;
+        }
+
+        items = items.concat([].slice.call(arguments));
+
+        if (items.length >= len) {
+            return that.apply(self, items);
+        } else {
+            return arguments.callee;
+        }
+    };
+
+    return res;
+}
 // function foo() {
 //     return this.bar;
 // }

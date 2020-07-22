@@ -1,15 +1,16 @@
-var a = `{
-    'success': true,
-    'code': '00',
-    'm3g': '请求成功',
-    'data': [{
-        'user_no': '100033',
-        'username': 'hhoo',
-        'headpic_url': 'http://005.oo.cn/201853351322521.jpg',
-        'new_mag': '你好'
-    }]
-}`
-a = a.replace(/'/g, '"');
-var c = JSON.parse(a);
+function isPalindrome( x ) {
+    // write code here
+    x = Math.abs(x).toString();
+    let isEven = x.length % 2 === 0;
+    let len = isEven ? x.length  : x.length + 1;
+    let mid = len / 2;
+    for(let i = 0; i < mid; ++i) {
+        if (x[i] !== x[x.length - i - 1]) {
+            return false;
+        }
+    }
+    return true;
 
-console.log(c.data[0].username);
+}
+
+isPalindrome(-2147483648)

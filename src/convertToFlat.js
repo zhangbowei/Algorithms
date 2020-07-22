@@ -32,7 +32,8 @@ function convertToFlat(dataArr, pathArr) {
         const conf = option;
         const nameArr = conf.match(/^(\w+)\.(.+)$/);
 
-        return data[conf] ? data[conf] : (nameArr ? getConfData(data[nameArr[1]], nameArr[2]) : undefined);
+        return data[conf] ? data[conf] :
+        (nameArr ? getConfData(data[nameArr[1]], nameArr[2]) : undefined);
     }
 
     const rawArr = dataArr.slice();

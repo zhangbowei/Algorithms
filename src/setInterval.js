@@ -1,14 +1,14 @@
-function setInterval(callbackFn, delay) {
-  function getTic(fn, time) {
-    return () => new Promise( (res, rej) => setTimeout( () => {fn(); res();}, time));
-  }
+function count(start, end) {
 
-  const cycleFn = getTic(callbackFn, delay);
-  const runStep = function () {
-    return () => cycleFn().then(runStep());
-  }
+    st = setTimeout(function(){
+        console.log('@@@', start);
+        count(start + 1);
+    }, 100);
 
-  runStep()();
+    return st;
 }
+count(1);
 
-setInterval(function() {console.log('cycle')}, 1000);
+setTimeout(function() {
+    clearTimeout(st);
+}, 3000);

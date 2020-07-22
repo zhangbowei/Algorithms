@@ -5,7 +5,8 @@ function Promise(callbackFn) {
         state = 'fulfilled';
         setTimeout(function () {
             nextList.reduce(function (prev, item, index) {
-                return prev&&prev.instanceof(Promise) ? prev.then(item, failList[index]) : item(data);
+                return prev&&prev.instanceof(Promise) ?
+                prev.then(item, failList[index]) : item(data);
             }, null);
         }, 0);
     };

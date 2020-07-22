@@ -32,5 +32,7 @@ async function signalLamp(signArr) {
             i = 0;
         }
     }
+
+    var sleep = () => new Promise((res) => setTimeout(() => res(), 100));
 }
 signalLamp(['red', 'green', 'yellow']);
